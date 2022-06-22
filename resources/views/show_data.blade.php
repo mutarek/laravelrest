@@ -1,17 +1,11 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Hello, world!</title>
-  </head>
-  <body>
 
+@include('header')
   <div class="container">
     <a href="{{url('/add-data')}}" class="btn btn-primary my-3">Add Data</a>
-  <table class="table">
+    @if(Session::has('msg'))
+    <p class="text-info">{{Session::get('msg')}}</p>
+    @endif
+  <table class="table table-bordered" >
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -21,20 +15,20 @@
     </tr>
   </thead>
   <tbody>
+    @foreach($alldata as $singledata)
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
+      <th scope="row">{{$singledata->id}}</th>
+      <td>{{$singledata->name}}</td>
+      <td>{{$singledata->email}}</td>
       <td>
-        <a href="" class="btn btn-outline-info">Edit</a>
-        <a href="" class="btn btn-danger">Delete</a>
+        <a href="{{url('/edit-data/'.$singledata->id)}}" class="btn btn-outline-info">Edit</a>
+        <a href="{{url('/delete-data/'.$singledata->id)}}" onclick="return confirm('are you sure want to delete')" class="btn btn-danger">Delete</a>
       </td>
     </tr>
-    
+    @endforeach
   </tbody>
 </table>
+<span class="justify-content-center text-center m-auto">{{$alldata->links()}}</span>
   </div>
    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  </body>
-</html>
+@include('footer')

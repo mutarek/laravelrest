@@ -21,3 +21,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[CrudController::class,'showdata']);
 Route::get('/add-data',[CrudController::class,'adddata']);
 Route::post('/store-data',[CrudController::class,'storedata']);
+Route::get('/edit-data/{id}',[CrudController::class,'editdata']);
+Route::post('/update-data/{id}',[CrudController::class,'updatedata']);
+Route::get('/delete-data/{id}',[CrudController::class,'deletedata']);
