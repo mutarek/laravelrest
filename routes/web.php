@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CrudController;
+use App\Http\Controllers\PersonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,5 @@ Route::post('/store-data',[CrudController::class,'storedata']);
 Route::get('/edit-data/{id}',[CrudController::class,'editdata']);
 Route::post('/update-data/{id}',[CrudController::class,'updatedata']);
 Route::get('/delete-data/{id}',[CrudController::class,'deletedata']);
+
+Route::get('add-person',[PersonController::class,'addperson']);
